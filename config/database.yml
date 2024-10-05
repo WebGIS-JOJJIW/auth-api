@@ -1,0 +1,19 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch('RAILS_MAX_THREADS') { 5 } %>
+  host: <%= ENV.fetch('DATABASE_HOST') { 'localhost' } %>
+  port: <%= ENV.fetch('DATABASE_PORT') { 5432 } %>
+  username: <%= ENV.fetch('POSTGRES_USER') { 'riseplus' } %>
+  password: <%= ENV.fetch('POSTGRES_PASSWORD') { 'riseplus' } %>
+  database: <%= ENV.fetch('POSTGRES_DB') { 'webgis_streamer' } %>
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+  database: <%= ENV.fetch('POSTGRES_TEST_DB') { 'webgis_streamer_test' } %>
+
+production:
+  <<: *default
